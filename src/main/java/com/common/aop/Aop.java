@@ -37,7 +37,7 @@ public class Aop {
 	private static Logger log = LoggerFactory.getLogger(Aop.class);
 
 	// 切面统一请求参数日志
-	@Before(value = "execution( * framework.controller..*.*(..))")
+	@Before(value = "execution( * com.controller..*.*(..))")
 	public void requestLog(JoinPoint joinPoint) {
 		// 接收到请求，记录请求内容
 		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();

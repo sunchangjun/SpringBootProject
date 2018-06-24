@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * addInterceptors 并且在主类上加上注解 @Configuration
  * 
  */
-@Configuration
+//@Configuration
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 	@Bean
