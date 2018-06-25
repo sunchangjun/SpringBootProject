@@ -29,7 +29,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
 	@Override
 	public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes)
 			throws AccessDeniedException, InsufficientAuthenticationException {
-		log.info("decide()");
+		log.info("decide():判断是否具有权限");
 		if (null == configAttributes || configAttributes.size() <= 0) {
 			return;
 		}

@@ -44,8 +44,9 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor imp
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		log.info("doFilter()");
+		
 		FilterInvocation fi = new FilterInvocation(request, response, chain);
+		log.info("doFilter():___"+fi.getRequestUrl());
 		invoke(fi);
 	}
 

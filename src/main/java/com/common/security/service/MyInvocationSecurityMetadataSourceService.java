@@ -11,6 +11,7 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dao.PermissionRepository;
 import com.entity.po.Permission;
 
@@ -35,7 +36,7 @@ public class MyInvocationSecurityMetadataSourceService  implements
      * 加载权限表中所有权限
      */
     public void loadResourceDefine(){
-    	log.info("loadResourceDefine");
+    	log.info("loadResourceDefine:加载权限表中的所有权限");
         map = new HashMap<>();
         Collection<ConfigAttribute> array;
         ConfigAttribute cfg;
@@ -54,7 +55,7 @@ public class MyInvocationSecurityMetadataSourceService  implements
 //此方法是为了判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行。
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-    	log.info("getAttributes");
+    	log.info("getAttributes():___:判定用户请求的url 是否在权限表中");
     	if(map ==null) loadResourceDefine();
         //object 中包含用户请求的request 信息
         HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
