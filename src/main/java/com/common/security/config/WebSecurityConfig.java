@@ -15,7 +15,7 @@ import com.common.security.service.CustomUserService;
 
 
 @Configuration
-@EnableWebSecurity /* 通过@EnableWebSecurity注解开启Spring Security的功能 */
+//@EnableWebSecurity /* 通过@EnableWebSecurity注解开启Spring Security的功能 */
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static Logger log = LoggerFactory.getLogger(WebSecurityConfig.class);
