@@ -10,7 +10,7 @@ import com.dao.PermissionRepository;
 import com.entity.po.Permission;
 import com.alibaba.fastjson.JSONObject;
 import com.base.BaseJunitTest;
-import com.common.redis.service.RedisUtil;
+import com.common.redis.service.RedisService;
 
 public class testPermission extends BaseJunitTest {
 	
@@ -18,13 +18,16 @@ public class testPermission extends BaseJunitTest {
 	PermissionRepository permissionDao;
 	
 	@Autowired
-	RedisUtil redis;
-
+	RedisService redisService;
 	
 	@Test
 	public  void   test() {
-		System.out.println(redis.get("ccc"));;
-		
+		System.out.println(redisService.exist("sunchangjunn"));
 	}
+	
+
+
+	
+
 
 }
