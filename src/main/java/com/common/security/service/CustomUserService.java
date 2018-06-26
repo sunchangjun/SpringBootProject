@@ -2,6 +2,8 @@ package com.common.security.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,8 @@ public class CustomUserService implements UserDetailsService {
 	    	log.info("loadUserByUsername():用户验证");
 	        SysUser user = userDao.findByUserName(username);
 	        if (user != null) {
-	            List<Permission> permissions = permissionDao.findByAdminUserId(user.getUserId());
+//	            Optional<Permission> permissions = permissionDao.findByAdminUserId(user.getUserId());
+	            List<Permission> permissions=null;
 	            List<GrantedAuthority> grantedAuthorities = new ArrayList <>();
 	            for (Permission permission : permissions) {
 	                if (permission != null && permission.getPermissionName()!=null) {
@@ -48,7 +51,8 @@ public class CustomUserService implements UserDetailsService {
 	                grantedAuthorities.add(grantedAuthority);
 	                }
 	            }
-	            return new User(user.getUserName(), user.getPassWord(), grantedAuthorities);
+
+          return new User(user.getUserName(), user.getPassWord(), grantedAuthorities);
 	        } else {
 	            throw new UsernameNotFoundException("admin: " + username + " do not exist!");
 	        }

@@ -1,19 +1,29 @@
 package com.dao;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dao.PermissionRepository;
+import com.entity.po.Permission;
 import com.alibaba.fastjson.JSONObject;
 import com.base.BaseJunitTest;
+import com.common.redis.service.RedisUtil;
 
 public class testPermission extends BaseJunitTest {
+	
 	@Autowired
 	PermissionRepository permissionDao;
 	
+	@Autowired
+	RedisUtil redis;
+
+	
 	@Test
 	public  void   test() {
-		System.out.println(JSONObject.toJSONString(permissionDao.findByAdminUserId(1)));;
+		System.out.println(redis.get("ccc"));;
 		
 	}
 
