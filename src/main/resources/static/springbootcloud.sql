@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-06-25 18:02:56
+Date: 2018-06-30 17:30:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `sys_permission` (
 -- ----------------------------
 INSERT INTO `sys_permission` VALUES ('1', 'ROLE_HOME', 'home', '/', null);
 INSERT INTO `sys_permission` VALUES ('2', 'ROLE_ADMIN', 'ABel', '/admin', null);
-INSERT INTO `sys_permission` VALUES ('4', 'ROLE_ADMIN', 'v', '/hello', null);
+INSERT INTO `sys_permission` VALUES ('4', 'ROLE_ADMIN', 'mysql', '/hello', null);
 
 -- ----------------------------
 -- Table structure for `sys_permission_role`
