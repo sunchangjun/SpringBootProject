@@ -10,6 +10,6 @@ import com.entity.po.SysUser;
 
 public interface RoleRepository extends BaseRepository<SysRole, Integer>{
 	
-	@Query("select sr from SysUser u,SysRoleUser sru,SysRole sr where u.userId=sru.userId and sru.roleId=sr.roleId  where u.userId =?1")
+	@Query("select sr from SysUser u,SysRoleUser sru,SysRole sr where u.userId=sru.userId and sru.roleId=sr.roleId  and u.userId =?1")
 	List<SysRole> getRoleListByUserId(Integer userId);
 }

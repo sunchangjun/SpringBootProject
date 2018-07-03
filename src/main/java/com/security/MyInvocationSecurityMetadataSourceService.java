@@ -3,16 +3,22 @@ package com.security;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Service;
 import com.dao.PermissionRepository;
 import com.entity.po.Permission;
 
+@Service
 public class MyInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource{
 	
 	/**
@@ -31,7 +37,25 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
 	@Override
 	public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 		   if(map ==null) loadResourceDefine();
-		   
+		      //object 中包含用户请求的request 信息
+	        HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
+	        AntPathRequestMatcher matcher;
+	        String resUrl;
+	        Iterator<String> iter = map.keySet().iterator(); 
+	        while (iter.hasNext()) {
+	            resUrl = iter.next();
+	            matcher = new AntPathRequestMatcher(resUrl);
+	            if(matcher.matches(request)) {
+	            	/**
+	            	 * matches:匹配方式分为三种:
+	            	 * 第一种: 问号(匹配任意一个字符,只在同级有效):如:g?t,能匹配get,gotdeng;
+	            	 * 第二种:单星*(匹配同级任意多个字符)
+	            	 * 第三种:双星**:(匹配同级或无线多的下级)
+	            	 */
+	                return map.get(resUrl);
+	            }				
+			}
+	   
 		return null;
 	}
 
@@ -62,8 +86,11 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		// TODO Auto-generated method stub
-		return false;
+		/**
+		 * 此处必须返回true
+		 * 否则异常:SecurityMetadataSource does not support secure object class: class org.springframework.security.web.FilterInvocation
+		 */
+		return true;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,13 +9,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import com.common.uttil.Md5Util;
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	
+	@Autowired
+	MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 	@Bean
 	UserDetailsService myUserDetailsService() {
 		// 注册UserDetailsService 的bean
@@ -39,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		
+		
 //		// 任何请求,登录后可以访问
 //		http.authorizeRequests();
 //		// .anyRequest().authenticated();
@@ -51,7 +56,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //		http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
 //		http.csrf().disable();
 		// TODO Auto-generated method stub
-		super.configure(http);
+	    
+   
+        	http	.authorizeRequests()
+			.antMatchers("/home").permitAll()//home 无需登录验证
+			.and()
+				.formLogin()
+//				.loginProcessingUrl("/tologin")
+				.loginPage("/login")//指定登录页为"login"
+				.permitAll();
+        	
+            http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+
 	}
 	
 	

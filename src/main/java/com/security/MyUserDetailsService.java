@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -48,7 +50,6 @@ public class MyUserDetailsService implements UserDetailsService{
 		for (SysRole sysRole : roleList) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(sysRole.getRoleName()));
 		}
-			
 		 return new User(user.getUserName(), user.getPassWord(), grantedAuthorities);
 		
 		

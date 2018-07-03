@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.alibaba.fastjson.JSONObject;
+import com.common.uttil.Md5Util;
 import com.entity.po.SysUser;
 
 public class test {
@@ -22,6 +23,8 @@ public class test {
 //		orElseGet可以接受一个lambda表达式生成默认值。*/
 //		//输出：Sanaulla
 //		 System.out.println(empty.orElseGet(() -> "Default Value"));
+		
+		System.out.println(Md5Util.EncoderByMd5((String) "admin", "utf8"));
 
 		
 
