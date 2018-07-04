@@ -29,7 +29,8 @@ public class MyAccessDecisionManager implements AccessDecisionManager{
 	*/
 	@Override
 	public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes)throws AccessDeniedException, InsufficientAuthenticationException {
-		   if(null== configAttributes || configAttributes.size() <=0) {
+		log.info("调用AccessDecisionManager.decide()方法");
+		if(null== configAttributes || configAttributes.size() <=0) {
 	            return;
 	        }
 		   
@@ -41,9 +42,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager{
 				for (GrantedAuthority ga : authentication.getAuthorities()) {
 					log.info("需要的权限:needRole={}",needRole);
 					log.info("用户循环添加的权限={}",ga.getAuthority());
-					if (needRole.trim().equals(ga.getAuthority().trim())) {
-					
-						
+					if (needRole.trim().equals(ga.getAuthority().trim())) {					
 						return;
 					}
 				}

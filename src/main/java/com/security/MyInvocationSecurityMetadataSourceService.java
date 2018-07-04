@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -21,6 +23,7 @@ import com.entity.po.Permission;
 @Service
 public class MyInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource{
 	
+	   private Logger log = LoggerFactory.getLogger(getClass());
 	/**
 	 * 
 	 */
@@ -36,6 +39,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
 	 */
 	@Override
 	public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
+		log.info("调用FilterInvocationSecurityMetadataSource.getAttributes()方法");
 		   if(map ==null) loadResourceDefine();
 		      //object 中包含用户请求的request 信息
 	        HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();

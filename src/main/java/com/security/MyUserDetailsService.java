@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 import com.dao.PermissionRepository;
 import com.dao.RoleRepository;
@@ -23,7 +24,7 @@ import com.entity.po.SysRole;
 import com.entity.po.SysUser;
 
 
-
+@Component
 public class MyUserDetailsService implements UserDetailsService{
 	private static Logger log = LoggerFactory.getLogger(MyUserDetailsService.class);
 	
@@ -38,12 +39,12 @@ public class MyUserDetailsService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		log.info("loadUserByUsername()"+username);
+		log.info("调用loadUserByUsername()"+username);
 		SysUser user=userRepository.findByUserName(username);
 		
 		//
 		if(null == user) {
-			   throw new UsernameNotFoundException("admin: " + username + " do not exist!");
+			   throw new UsernameNotFoundException("admin: " + username + " 用户不存在!");
 		}
 		List<GrantedAuthority> grantedAuthorities=new ArrayList<GrantedAuthority>();
 		List<SysRole> roleList=roleRepository.getRoleListByUserId(user.getUserId());

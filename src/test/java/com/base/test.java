@@ -24,7 +24,7 @@ public class test {
 //		//输出：Sanaulla
 //		 System.out.println(empty.orElseGet(() -> "Default Value"));
 		
-		System.out.println(Md5Util.EncoderByMd5((String) "admin", "utf8"));
+		System.out.println(Md5Util.EncoderByMd5((String) "abel", "utf8"));
 
 		
 
