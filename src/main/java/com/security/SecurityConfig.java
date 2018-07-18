@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		});
 	}
 	
-	 public String[] whiteUrls = new String[]{"/login","/adv"};
+	 public String[] whiteUrls = new String[]{"/login","/adv","/swageger3/index.html"};
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	    

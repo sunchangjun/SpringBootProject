@@ -15,5 +15,10 @@ public class HtmlController {
 	public  String home(String username,String password) {
 		return  "home";
 	}
+	@GetMapping("/swagger")
+	public  String swagger(String username,String password) {
+		return  "home";
+	}
+	
 	
 }
