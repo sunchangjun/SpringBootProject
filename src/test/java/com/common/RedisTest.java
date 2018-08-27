@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.base.BaseJunitTest;
-import com.common.redis.service.RedisService;
 
 /**
  * @author sunchangjunn
@@ -15,12 +14,7 @@ import com.common.redis.service.RedisService;
  */
 public class RedisTest extends BaseJunitTest{
 	
-	@Autowired
-	RedisService redisService;
-	@Test
-	public  void  test() {
-		System.out.println();
-		System.out.println(redisService.get("sun"));;
-	}
+
+
 
 }
